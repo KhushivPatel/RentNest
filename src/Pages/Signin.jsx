@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { VscEyeClosed } from "react-icons/vsc";
 import { VscEye } from "react-icons/vsc";
@@ -14,13 +15,14 @@ const Signin = () => {
       [e.target.id]: e.target.value,
     }));
   }
+
   return (
     <section>
-      <div className="flex justify-center flex-wrap items-center px-4 py-10 max-w-6xl mx-auto  mt-4 bg-white shadow-lg active:bg-orange-300 mb-5  rounded-2xl">
+      <div className="flex justify-center flex-wrap items-center px-4 py-10 max-w-6xl mx-auto  mt-4 bg-white shadow-lg  mb-5  rounded-2xl">
         <div className="md:w-[68%] lg:w-[54%]   ">
           <img src="img/signin1.jpg" className=" object-cover w-full"></img>
         </div>
-        <div className="w-full md:w-[67%] lg:w-[40%]  bg-orange-50 h-fit  px-5 mb-2">
+        <div className="w-full md:w-[67%] lg:w-[40%]  bg-white h-fit  px-5 mb-2">
           <form>
             <h1 className="text-center font-semibold text-3xl mt-3 mb-4 text-orange-500 ">
               Sign In
@@ -56,7 +58,7 @@ const Signin = () => {
             </div>
             <div className="flex justify-between whitespace-nowrap text-sm">
               <p className="mb-6">
-                Don't have account ?
+                do not have account ?
                 <Link
                   to="/Sign-Up"
                   className="text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out ml-1"

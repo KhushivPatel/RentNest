@@ -8,6 +8,7 @@ import Fpass from "./Pages/Fpass";
 import Offer from "./Pages/Offer";
 import Nav from "./Com/Nav.jsx";
 
+
 function App() {
   return (
     <>

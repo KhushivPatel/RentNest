@@ -3,6 +3,8 @@ import { VscEyeClosed } from "react-icons/vsc";
 import { VscEye } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import OAuth from "../Com/OAuth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { db } from "../FireBase";
 
 const Signup = () => {
   const [ShowPass, setShowPass] = useState(false);
@@ -18,14 +20,31 @@ const Signup = () => {
       [e.target.id]: e.target.value,
     }));
   }
+  async function onSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const auth = getAuth();
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      console.log(user);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <section>
-      <div className="flex justify-center flex-wrap items-center px-4 py-10 max-w-6xl mx-auto  mt-4 bg-white shadow-lg active:bg-orange-300 mb-5  rounded-2xl">
-        <div className="md:w-[68%] lg:w-[52%]   ">
+      <div className="flex justify-center flex-wrap items-center px-4 py-10 max-w-6xl mx-auto  mt-4 bg-white shadow-lg   rounded-2xl">
+        <div className="md:w-[68%] lg:w-[52%] ">
           <img src="img/signup.jpg" className=" object-cover w-full"></img>
         </div>
-        <div className="w-full md:w-[67%] lg:w-[40%]  bg-orange-50 h-fit  px-5 mb-2">
-          <form>
+        <div className="w-full md:w-[67%] lg:w-[40%]  bg-white h-fit  px-5 mb-2">
+          <form onSubmit={onSubmit}>
             <h1 className="text-center font-semibold text-3xl mt-3 mb-4 text-orange-500 ">
               Sign Up
             </h1>
@@ -86,7 +105,7 @@ const Signup = () => {
             className="w-full bg-orange-500 px-7 py-3 text-white text-sm font-medium uppercase rounded shadow-md hover:bg-orange-600 transition duration-150 ease-in-out hover:shadow-lg active:bg-orange-700 "
             type="submit"
           >
-            Sign In
+            Sign Up
           </button>
           <div className=" flex items-center my-4 before:border-t  before:flex-1  before:border-gray-500  after:border-t  after:flex-1  after:border-gray-500">
             <p className="text-center font-semibold mx-4">OR</p>

@@ -9,11 +9,11 @@ const Fpass = () => {
   }
   return (
     <section>
-      <div className="flex justify-center flex-wrap items-center px-4 py-10 max-w-6xl mx-auto  mt-4 bg-white shadow-md active:bg-orange-300 mb-5  rounded-2xl">
+      <div className="flex justify-center flex-wrap items-center px-4 py-10 max-w-6xl mx-auto  mt-4 bg-white shadow-md  mb-5  rounded-2xl">
         <div className="md:w-[68%] lg:w-[50%]   ">
           <img src="img/fpass.jpg" className=" object-cover w-full"></img>
         </div>
-        <div className="w-full md:w-[67%] lg:w-[40%]  bg-orange-50 h-fit  px-5 mb-2">
+        <div className="w-full md:w-[67%] lg:w-[40%]  bg-white h-fit  px-5 mb-2">
           <form>
             <h1 className="text-center font-semibold text-3xl mt-3 mb-3 text-orange-500 ">
               Forgot Password
@@ -39,7 +39,7 @@ const Fpass = () => {
                 </Link>
               </p>
               <p className="text-red-500 hover:text-red-800 transition duration-200 ease-in-out ">
-                <Link to="/Sign-In">Signin</Link>
+                <Link to="/Sign-In">Sign in</Link>
               </p>
             </div>
           </form>
