@@ -6,15 +6,16 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAxiGUPJkXRNnNsGa-IHZz28lmXROFH3m8",
-  authDomain: "rentnest-dc0aa.firebaseapp.com",
-  projectId: "rentnest-dc0aa",
-  storageBucket: "rentnest-dc0aa.appspot.com",
-  messagingSenderId: "1010442704707",
-  appId: "1:1010442704707:web:0b4c019a53c0f1150281f6",
-
+  apiKey: "AIzaSyD-fuGCkBOKOJZm1De63u7wW7NYKiGgpNg",
+  authDomain: "rent-41e2a.firebaseapp.com",
+  projectId: "rent-41e2a",
+  storageBucket: "rent-41e2a.appspot.com",
+  messagingSenderId: "126196330827",
+  appId: "1:126196330827:web:62567d2fa150593e3578ce",
 };
 
 // Initialize Firebase
+// AIzaSyCfFE009jegcLsHf_-33TgJIszEVnjna40
+//initializeApp(firebaseConfig);
 export const app = initializeApp(firebaseConfig);
-export const db = getFirestore();
+export const db = getFirestore(app);

@@ -7,7 +7,8 @@ import Signup from "./Pages/Signup";
 import Fpass from "./Pages/Fpass";
 import Offer from "./Pages/Offer";
 import Nav from "./Com/Nav.jsx";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -23,6 +24,20 @@ function App() {
           <Route path="/Offer" element={<Offer />} />
         </Routes>
       </Router>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* Same as */}
+      <ToastContainer />
     </>
   );
 }

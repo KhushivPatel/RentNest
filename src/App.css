@@ -40,3 +40,25 @@
 .read-the-docs {
   color: #888;
 }
+
+
+  async function onSubmit(e) {
+    e.preventDefault();
+    
+  const auth = getAuth();
+    console.log(FormData.email);
+    console.log(FormData.password);
+    console.log(FormData);
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      console.log(user);
+    } catch (error) {
+      console.log(error);
+    }
+  }
