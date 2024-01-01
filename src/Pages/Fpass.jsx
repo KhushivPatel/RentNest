@@ -1,11 +1,24 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import OAuth from "../Com/OAuth";
 
 const Fpass = () => {
   const [email, setEmail] = useState("");
   function onchange(e) {
     setEmail(e.target.value);
+  }
+  async function onSubmit(e) {
+    e.preventDefault();
+    console.log(email);
+    try {
+      const auth = getAuth();
+      await sendPasswordResetEmail(auth, email);
+      toast.success("Email was send");
+    } catch (error) {
+      toast.error("could not send resetpassword");
+    }
   }
   return (
     <section>
@@ -21,7 +34,7 @@ const Fpass = () => {
             <input
               type="email"
               id="email"
-              value={email}
+              value={FormData.email}
               onChange={onchange}
               placeholder="Enter your mail"
               className=" w-full px-4 py-2  text-gray-700 bg-white border-gray-300 rounded transition ease-in-out "
@@ -42,13 +55,14 @@ const Fpass = () => {
                 <Link to="/Sign-In">Sign in</Link>
               </p>
             </div>
+            <button
+              className="w-full bg-orange-500 px-7 py-3 text-white text-sm font-medium uppercase rounded shadow-md hover:bg-orange-600 transition duration-150 ease-in-out hover:shadow-lg active:bg-orange-700 "
+              type="submit"
+              onClick={onSubmit}
+            >
+              Send Reset Password
+            </button>
           </form>
-          <button
-            className="w-full bg-orange-500 px-7 py-3 text-white text-sm font-medium uppercase rounded shadow-md hover:bg-orange-600 transition duration-150 ease-in-out hover:shadow-lg active:bg-orange-700 "
-            type="submit"
-          >
-            Send Reset Password
-          </button>
           <div className=" flex items-center my-4 before:border-t  before:flex-1  before:border-gray-500  after:border-t  after:flex-1  after:border-gray-500">
             <p className="text-center font-semibold mx-4">OR</p>
           </div>
