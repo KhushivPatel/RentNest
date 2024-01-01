@@ -121,14 +121,14 @@ const Signup = () => {
                 <Link to="/F-pass">Forgot Password?</Link>
               </p>
             </div>
+            <button
+              className="w-full bg-orange-500 px-7 py-3 text-white text-sm font-medium uppercase rounded shadow-md hover:bg-orange-600 transition duration-150 ease-in-out hover:shadow-lg active:bg-orange-700 "
+              type="submit"
+              onClick={onSubmit}
+            >
+              Sign Up
+            </button>
           </form>
-          <button
-            className="w-full bg-orange-500 px-7 py-3 text-white text-sm font-medium uppercase rounded shadow-md hover:bg-orange-600 transition duration-150 ease-in-out hover:shadow-lg active:bg-orange-700 "
-            type="submit"
-            onClick={onSubmit}
-          >
-            Sign Up
-          </button>
           <div className=" flex items-center my-4 before:border-t  before:flex-1  before:border-gray-500  after:border-t  after:flex-1  after:border-gray-500">
             <p className="text-center font-semibold mx-4">OR</p>
           </div>

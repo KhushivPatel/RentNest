@@ -1,19 +1,41 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { VscEyeClosed } from "react-icons/vsc";
 import { VscEye } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import OAuth from "../Com/OAuth";
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+// import { db } from "../firebase";
 
 const Signin = () => {
   const [ShowPass, setShowPass] = useState(false);
   const [FormData, setFormData] = useState({ email: "", password: "" });
   const { email, password } = FormData;
+  const navigate = useNavigate();
   function onchange(e) {
     setFormData((prevState) => ({
       ...prevState,
       [e.target.id]: e.target.value,
     }));
+  }
+  async function onSubmit(e) {
+    e.preventDefault();
+    console.log(email);
+    try {
+      const auth = getAuth();
+      // console.log (auth)
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        FormData.email,
+        FormData.password
+      );
+      if (userCredential.user) {
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error("Bad user credentials");
+    }
   }
 
   return (
@@ -30,7 +52,7 @@ const Signin = () => {
             <input
               type="email"
               id="email"
-              value={email}
+              value={FormData.email}
               onChange={onchange}
               placeholder="Enter your mail"
               className=" w-full px-4 py-2  text-gray-700 bg-white border-gray-300 rounded transition ease-in-out "
@@ -39,7 +61,7 @@ const Signin = () => {
               <input
                 type={ShowPass ? "text" : "password"}
                 id="password"
-                value={password}
+                value={FormData.password}
                 onChange={onchange}
                 placeholder="Enter your Password"
                 className="w-full px-4 py-2  text-gray-700 bg-white border-gray-300 rounded transition ease-in-out "
@@ -70,13 +92,14 @@ const Signin = () => {
                 <Link to="/F-pass">Forgot Password?</Link>
               </p>
             </div>
+            <button
+              className="w-full bg-orange-500 px-7 py-3 text-white text-sm font-medium uppercase rounded shadow-md hover:bg-orange-600 transition duration-150 ease-in-out hover:shadow-lg active:bg-orange-700 "
+              type="submit"
+              onClick={onSubmit}
+            >
+              Sign In
+            </button>
           </form>
-          <button
-            className="w-full bg-orange-500 px-7 py-3 text-white text-sm font-medium uppercase rounded shadow-md hover:bg-orange-600 transition duration-150 ease-in-out hover:shadow-lg active:bg-orange-700 "
-            type="submit"
-          >
-            Sign In
-          </button>
           <div className=" flex items-center my-4 before:border-t  before:flex-1  before:border-gray-500  after:border-t  after:flex-1  after:border-gray-500">
             <p className="text-center font-semibold mx-4">OR</p>
           </div>
