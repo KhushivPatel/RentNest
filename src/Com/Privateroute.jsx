@@ -1,11 +1,12 @@
 import React from 'react'
 import { Navigate, Outlet } from 'react-router';
 import {Useauth}from '../Hooks/Useauth';
+import Spinner from './Spinner';
 
 const Privateroute = () => {
     const {loggedIn,checkingStatus}=Useauth();
     if(checkingStatus){
-        return <h3>Loading.....</h3>
+        return <Spinner/>
     }
     return loggedIn ? <Outlet/>: <Navigate to = "/Sign-In"/>
 }
