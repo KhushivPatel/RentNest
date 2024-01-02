@@ -7,6 +7,7 @@ import Signup from "./Pages/Signup";
 import Fpass from "./Pages/Fpass";
 import Offer from "./Pages/Offer";
 import Nav from "./Com/Nav.jsx";
+import Privateroute from "./Com/Privateroute.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -17,7 +18,9 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Profile" element={<Profile />} />
+          <Route path="/Profile" element={<Privateroute/>}>
+            <Route path="/Profile" element={<Profile />} />
+          </Route>
           <Route path="/Sign-In" element={<Signin />} />
           <Route path="/Sign-Up" element={<Signup />} />
           <Route path="/F-pass" element={<Fpass />} />
