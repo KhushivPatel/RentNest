@@ -13,6 +13,8 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../firebase";
+import { FcHome } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const auth = getAuth();
@@ -27,26 +29,26 @@ const Profile = () => {
     auth.signOut();
     Navigate("/");
   }
-  function onChange(e){
-    setFormData((prevState)=>({
+  function onChange(e) {
+    setFormData((prevState) => ({
       ...prevState,
-      [e.target.id]:e.target.value,
-    }))
+      [e.target.id]: e.target.value,
+    }));
   }
-  async function onSubmit (){
+  async function onSubmit() {
     try {
-      if(auth.currentUser.displayName !== name){
+      if (auth.currentUser.displayName !== name) {
         // update name in firebase
-        await updateProfile(auth.currentUser,{
-          displayName:name,
-        })
+        await updateProfile(auth.currentUser, {
+          displayName: name,
+        });
         // update name in firestore
-        const docRef=doc(db ,"users",auth.currentUser.uid)
-        await updateDoc(docRef,{name,})
+        const docRef = doc(db, "users", auth.currentUser.uid);
+        await updateDoc(docRef, { name });
       }
-      toast.success("Profile is updated")
+      toast.success("Profile is updated");
     } catch (error) {
-      toast.error("could not update the profile details")
+      toast.error("could not update the profile details");
     }
   }
   return (
@@ -77,24 +79,34 @@ const Profile = () => {
         <div className="w-full  mt-10 px-3">
           <form>
             {/* name inpute */}
-            <input
-              type="text"
-              id="name"
-              value={FormData.name}
-              disabled={!changeDetail}
-              onChange={onChange}
-              className={`w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition ease-in-out mb-6 ${
-                changeDetail && "bg-orange-200 focus:bg-orange-200 "
-              }`}
-            />
+            <div className="flex items-center">
+              <span className="mr-2 text-lg text-orange-600 h-12 font-bold">
+                Name:
+              </span>
+              <input
+                type="text"
+                id="name"
+                value={FormData.name}
+                disabled={!changeDetail}
+                onChange={onChange}
+                className={`w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition ease-in-out mb-6 ${
+                  changeDetail && "bg-orange-200 focus:bg-orange-200 "
+                }`}
+              />
+            </div>
             {/* email input */}
-            <input
-              type="emial"
-              id="email"
-              value={FormData.email}
-              disabled
-              className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition ease-in-out mb-6 "
-            />
+            <div className="flex items-center">
+              <span className="mr-2 text-lg text-orange-600 h-12 font-bold">
+                Email:
+              </span>
+              <input
+                type="emial"
+                id="email"
+                value={FormData.email}
+                disabled
+                className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition ease-in-out mb-6 "
+              />
+            </div>
             <div className=" flex justify-between whitespace-nowrap text-sm sm:text-lg mb-6 ">
               <p className="flex items-center ">
                 Do you want to change your name ?
@@ -116,10 +128,13 @@ const Profile = () => {
               </p>
             </div>
             <button
-              className="w-full bg-orange-500 px-7 py-3 text-white text-sm font-medium uppercase rounded shadow-md hover:bg-orange-600 transition duration-150 ease-in-out hover:shadow-lg active:bg-orange-700 mb-6 "
+              className="w-full bg-gray-100 px-7 py-3 text-orange-600 font-bold text-sm uppercase rounded shadow-md hover:bg-gray-300 transition duration-150 ease-in-out hover:shadow-lg active:bg-gray-300 mb-6 "
               type="submit"
             >
-              Send Reset Password
+              <Link to="/Create-list" className="flex justify-center items-center">
+                <FcHome className="mr-2 text-2xl " />
+                Sell or Rent your home
+              </Link>
             </button>
           </form>
         </div>

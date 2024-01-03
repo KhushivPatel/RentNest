@@ -10,6 +10,7 @@ import Nav from "./Com/Nav.jsx";
 import Privateroute from "./Com/Privateroute.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Createlist from "./Pages/Createlist.jsx";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/Sign-Up" element={<Signup />} />
           <Route path="/F-pass" element={<Fpass />} />
           <Route path="/Offer" element={<Offer />} />
+          <Route path="/Create-list" element={<Createlist/>} />
         </Routes>
       </Router>
       <ToastContainer
