@@ -10,7 +10,8 @@ import Nav from "./Com/Nav.jsx";
 import Privateroute from "./Com/Privateroute.jsx";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Createlist from "./Pages/Createlist.jsx";
+import CreateListing from "./Pages/CreateListing.jsx";
+import Upload from "./Pages/Upload.jsx";
 
 function App() {
   return (
@@ -19,14 +20,17 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/Profile" element={<Privateroute/>}>
+          <Route path="/Profile" element={<Privateroute />}>
             <Route path="/Profile" element={<Profile />} />
           </Route>
           <Route path="/Sign-In" element={<Signin />} />
           <Route path="/Sign-Up" element={<Signup />} />
           <Route path="/F-pass" element={<Fpass />} />
           <Route path="/Offer" element={<Offer />} />
-          <Route path="/Create-list" element={<Createlist/>} />
+          <Route path="/Create-list" element={<Privateroute />}>
+            <Route path="/Create-list" element={<CreateListing />} />
+          </Route>
+          <Route path="/Upload" element={<Upload />} />
         </Routes>
       </Router>
       <ToastContainer

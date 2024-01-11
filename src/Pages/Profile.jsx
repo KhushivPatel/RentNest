@@ -53,7 +53,7 @@ const Profile = () => {
   }
   return (
     <>
-      <section className="max-w-xl mx-auto flex justify-center items-center flex-col bg-white mt-10  rounded-2xl border  border-gray-100 shadow-md ">
+      <section className="mb-6 max-w-xl mx-auto flex justify-center items-center flex-col bg-white mt-10  rounded-2xl border  border-gray-100 shadow-md ">
         {/* <h1 className='text-3xl text-center mt-6 font-bold'>My Profile</h1> */}
 
         <div className="bg-white mb-6 w-full rounded rounded-2xl relative h-62  ">
@@ -76,7 +76,7 @@ const Profile = () => {
           {/* dp end */}
         </div>
 
-        <div className="w-full  mt-10 px-3">
+        <div className="w-full  mt-6 px-3">
           <form>
             {/* name inpute */}
             <div className="flex items-center">
@@ -131,7 +131,10 @@ const Profile = () => {
               className="w-full bg-gray-100 px-7 py-3 text-orange-600 font-bold text-sm uppercase rounded shadow-md hover:bg-gray-300 transition duration-150 ease-in-out hover:shadow-lg active:bg-gray-300 mb-6 "
               type="submit"
             >
-              <Link to="/Create-list" className="flex justify-center items-center">
+              <Link
+                to="/Create-list"
+                className="flex justify-center items-center"
+              >
                 <FcHome className="mr-2 text-2xl " />
                 Sell or Rent your home
               </Link>
