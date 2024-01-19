@@ -8,10 +8,12 @@ import Fpass from "./Pages/Fpass";
 import Offer from "./Pages/Offer";
 import Nav from "./Com/Nav.jsx";
 import Privateroute from "./Com/Privateroute.jsx";
-import { ToastContainer, toast } from "react-toastify";
+import { Slide, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CreateListing from "./Pages/CreateListing.jsx";
 import Upload from "./Pages/Upload.jsx";
+
+import EditListing from "./Pages/EditListing.jsx";
 
 function App() {
   return (
@@ -30,7 +32,11 @@ function App() {
           <Route path="/Create-list" element={<Privateroute />}>
             <Route path="/Create-list" element={<CreateListing />} />
           </Route>
+          <Route path="edit-listing" element={<Privateroute />}>
+            <Route path="/edit-listing/:listingId" element={<EditListing />} />
+          </Route>
           <Route path="/Upload" element={<Upload />} />
+          <Route path="/Slider" element={<Slide />} />
         </Routes>
       </Router>
       <ToastContainer

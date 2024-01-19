@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react"; 
 // eslint-disable-next-line no-unused-vars
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Spinner from "../Com/Spinner";
 import { toast } from "react-toastify";
 import {
@@ -12,14 +12,15 @@ import {
 } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 import { v4 as uuidv4 } from "uuid";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useNavigate } from "react-router-dom";
 
-const Createlist = () => {
+const EditListing = () => {
   const navigate = useNavigate();
   const auth = getAuth();
   const [loading, setLoading] = useState(false);
+   const [listing, setListing] = useState(null);
   // const [geolocationEnabled, setgeolocationEnabled] = useState(true);
   const [FormData, setFormData] = useState({
     type: "rent", //or sell
@@ -52,6 +53,34 @@ const Createlist = () => {
     // longitude,
     images,
   } = FormData;
+  
+  const params = useParams();
+
+  useEffect(() => {
+    if (listing && listing.userRef !== auth.currentUser.uid) {
+      toast.error("You can't edit this listing");
+      navigate("/");
+    }
+  }, [auth.currentUser.uid, listing, navigate]);
+
+  useEffect(() => {
+    setLoading(true);
+    async function fetchListing() {
+      const docRef = doc(db, "listings", params.listingId);
+      const docSnap = await getDoc(docRef); 
+      if (docSnap.exists()) {
+        setListing(docSnap.data());
+        setFormData({ ...docSnap.data() });
+        setLoading(false);
+      } else {
+        navigate("/");
+        toast.error("Listing does not exist");
+      }
+    }
+    fetchListing();
+  }, [navigate, params.listingId]);
+
+
 
   // function
   function onChange(e) {
@@ -147,9 +176,10 @@ const Createlist = () => {
     !formDataCopy.offer && delete formDataCopy.discountedPrice;
     delete formDataCopy.latitude;
     delete formDataCopy.longitude;
-    const docRef = await addDoc(collection(db, "listings"), formDataCopy);
+    const docRef= doc(db, "listings",params.listingId) ;
+     await updateDoc(docRef, formDataCopy);
     setLoading(false);
-    toast.success("Listing created");
+    toast.success("List Updated");
     navigate(`/category/${formDataCopy.type}/${docRef.id}`);
   }
 
@@ -164,7 +194,7 @@ const Createlist = () => {
       >
         <form className=" mb-4 w-[60%] bg-gray-100 mt-4  bg-opacity-50  gap-4 backdrop-filter backdrop-blur-md backdrop-blur-lg px-5  rounded">
           <h1 className="text-3xl gap-4 col-span-2 ... text-orange-600  text-center mt-1.5  font-bold  ">
-            Create your own list
+            Edit Listing
           </h1>
           {/* rent and sell */}
           <p className="text-sm col-span-2 mt-6 font-semibold">
@@ -472,7 +502,7 @@ const Createlist = () => {
             type="submit"
             onClick={onSubmit}
           >
-            Createlist
+          Edit
           </button>
         </form>
       </main>
@@ -480,4 +510,4 @@ const Createlist = () => {
   );
 };
 
-export default Createlist;
+export default EditListing;

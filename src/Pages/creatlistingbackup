@@ -1,0 +1,121 @@
+<p className="text-sm col-span-2  mt-6 font-semibold ">
+            {" "}
+            Sell /Rent
+            <div className="flex w-full  ">
+              {/* sell  */}
+              <button
+                type="button"
+                id="type"
+                value="sale"
+                onClick={onChange}
+                className={` mr-3 p-2 font-sm text-sm uppercase shadow-medium rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
+                  type === "rent"
+                    ? "bg-gray-100 text-orange-600"
+                    : "bg-orange-500 text-white"
+                } `}
+              >
+                Sell
+              </button>
+              {/* rent */}
+              <button
+                type="button"
+                id="type"
+                value="rent"
+                onClick={onChange}
+                className={` ml-3 p-2 font-medium text-sm uppercase shadow-medium rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
+                  type === "sale"
+                    ? "bg-gray-100 text-orange-600"
+                    : "bg-orange-500 text-white"
+                } `}
+              >
+                rent
+              </button>
+            </div>
+          </p>
+
+          <!--  -->
+            {/* offer */}
+            <p className="text-sm  font-semibold"> Offer</p>
+            <div className="flex ">
+              {/* yes  */}
+              <button
+                type="button"
+                id="offer"
+                value={true}
+                onClick={onChange}
+                className={` mr-3 p-2 font-medium text-sm uppercase shadow-medium rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
+                  !offer
+                    ? "bg-gray-100 text-orange-600"
+                    : "bg-orange-500 text-white"
+                } `}
+              >
+                yes
+              </button>
+              {/* no */}
+              <button
+                type="button"
+                id="offer"
+                value={false}
+                onClick={onChange}
+                className={` ml-3 p-2 font-medium text-sm uppercase shadow-medium rounded hover:shadow-lg focus:shadow-lg active:shadow-lg transition duration-150 ease-in-out w-full ${
+                  offer
+                    ? "bg-gray-100 text-orange-600"
+                    : "bg-orange-500 text-white"
+                } `}
+              >
+                no
+              </button>
+            </div>
+          </p>
+
+          {/* price */}
+          <div className="flex col-span-2  mb-4">
+            {/* regular price */}
+            <div>
+              <p className="text-sm mt-4 font-semibold">Regular Price</p>
+              <div className="flex justify-center items-center  ">
+                <input
+                  type="number"
+                  id="regularprice"
+                  value={regularprice}
+                  onChange={onChange}
+                  required
+                  className=" w-full p-2 text-sm text-gray-700 bg-white  border border-gray-400 rounded transition duration-150 ease-in-out focus:outline-none focus:border-orange-500 focus:ring focus:ring-orange-200"
+                />
+                {type === "rent" && (
+                  <div className="">
+                    <p className="text-sm w-full whitespace-nowrap">
+                      {" "}
+                      ₹ /Month
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+          {/* discount */}
+          {offer && (
+            <div className="flex  mb-4">
+              <div>
+                <p className="text-sm  font-semibold">Discount Price</p>
+                <div className="flex justify-center items-center  ">
+                  <input
+                    type="number"
+                    id="discountprice"
+                    value={discountprice}
+                    onChange={onChange}
+                    required
+                    className=" w-full p-2 text-sm text-gray-700 bg-white  border border-gray-400 rounded transition duration-150 ease-in-out focus:outline-none focus:border-orange-500 focus:ring focus:ring-orange-200"
+                  />
+                  {type === "rent" && (
+                    <div className="">
+                      <p className="text-sm w-full whitespace-nowrap">
+                        {" "}
+                        ₹ /Month
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
